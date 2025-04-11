@@ -3,20 +3,32 @@ package io.github.wugpie.blueStat
 import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.entity.Player
 import java.io.File
-import java.nio.file.Path
-import java.nio.file.attribute.FileAttribute
-import kotlin.io.path.*
 
-class FileConfiguration() {
 
-    fun getStatFile(player : Player) : File{
-       return File( "plugins" + File.separator+ "bluestats" + File.separator + "${player.uniqueId}.yml")
-    }
-
-    fun createStatFile(player : Player){
-        var stat = YamlConfiguration.loadConfiguration(getStatFile(player))
-        stat.set("hello", 0)
-        stat.save(getStatFile(player))
-    }
-
+fun Player.getStatFile() : File {
+    return File("plugins" + File.separator
+            + "bluestats" + File.separator
+            + "${this.uniqueId}.yml")
 }
+
+fun Player.setStat(name : String, value : Int) {
+    val stat = YamlConfiguration.loadConfiguration(this.getStatFile())
+    stat.set(name, value)
+    stat.save(this.getStatFile())
+}
+
+fun Player.getStat(name : String) : Int {
+    return YamlConfiguration.loadConfiguration(this.getStatFile()).getInt(name)
+}
+
+fun Player.resetStatFile() {
+    this.apply {
+        setStat("ATK", 0) // 공격력
+        setStat("DEF", 0) // 방어력
+        setStat("STB", 0) // 안정치
+        setStat("CRT", 0) // 크리
+        setStat("AVI", 0) // 회피
+        setStat("RGW", 0) // 집중(활 공격력)
+    }
+}
+
