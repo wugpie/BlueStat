@@ -2,3 +2,5 @@ name: BlueStat
 version: '1.0-SNAPSHOT'
 main: io.github.wugpie.blueStat.BlueStat
 api-version: '1.21'
+libraries:
+  - org.jetbrains.kotlin:kotlin-stdlib:1.6.10

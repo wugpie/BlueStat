@@ -1,11 +1,17 @@
 package io.github.wugpie.blueStat
 
+import io.github.wugpie.blueStat.command.StatCommand
+import io.github.wugpie.blueStat.util.resetStatFile
+import io.papermc.paper.plugin.lifecycle.event.types.LifecycleEvents
+import org.bukkit.Bukkit
 import org.bukkit.ChatColor
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.player.PlayerJoinEvent
+import org.bukkit.event.server.PluginEnableEvent
 import org.bukkit.plugin.java.JavaPlugin
 import java.io.File
+
 
 class BlueStat : JavaPlugin(), Listener {
 
@@ -18,6 +24,16 @@ class BlueStat : JavaPlugin(), Listener {
         //초기 폴더 생성
         val folder = File(server.pluginsFolder, "bluestats")
         if(!folder.exists()) folder.mkdir()
+
+        val manager = this.lifecycleManager
+        manager.registerEventHandler(LifecycleEvents.COMMANDS) { event ->
+            if (event.registrar().dispatcher != null) {
+                StatCommand.register(event.registrar().dispatcher)
+                logger.info("Brigadier command registered successfully.")
+            } else {
+                logger.severe("Failed to register Brigadier command.")
+            }
+        }
     }
 
     //초기 파일 생성
@@ -25,6 +41,7 @@ class BlueStat : JavaPlugin(), Listener {
     fun onFirstJoin(event : PlayerJoinEvent) {
         event.player.resetStatFile()
     }
+
 
     override fun onDisable() {
         server.consoleSender.sendMessage("${ChatColor.GREEN}ホシノ大好き!")

@@ -1,5 +1,6 @@
 package io.github.wugpie.blueStat
 
+import io.github.wugpie.blueStat.util.getStat
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
