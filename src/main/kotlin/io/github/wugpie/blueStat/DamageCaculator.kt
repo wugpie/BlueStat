@@ -12,10 +12,12 @@ class DamageCaculator : Listener{
     fun onDamage(event : EntityDamageByEntityEvent){
 
         //테스트 용
-        if(event.entity is Player){
-            val p = event.entity as Player
+        if(event.damager is Player){
+            val p = event.damager as Player
             val atk = p.getStat("ATK")
+            p.sendMessage(atk.toString())
             event.damage *= (1 + ( atk / 100 ) )
+            p.sendMessage(event.damage.toString())
         }
 
     }
