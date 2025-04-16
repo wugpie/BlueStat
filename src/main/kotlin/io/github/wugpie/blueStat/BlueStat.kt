@@ -1,6 +1,7 @@
 package io.github.wugpie.blueStat
 
 import io.github.wugpie.blueStat.command.StatCommand
+import io.github.wugpie.blueStat.event.InvManager
 import io.github.wugpie.blueStat.util.getStatFile
 import io.github.wugpie.blueStat.util.resetStatFile
 import io.papermc.paper.plugin.lifecycle.event.types.LifecycleEvents
@@ -18,6 +19,7 @@ class BlueStat : JavaPlugin(), Listener {
     override fun onEnable() {
         server.consoleSender.sendMessage("${ChatColor.RED}ホシノ大好き!")
         server.pluginManager.registerEvents(DamageCaculator(), this)
+        server.pluginManager.registerEvents(InvManager(), this)
         server.pluginManager.registerEvents(this, this)
 
         //초기 폴더 생성
