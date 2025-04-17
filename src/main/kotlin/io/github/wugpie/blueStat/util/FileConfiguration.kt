@@ -29,6 +29,8 @@ fun Player.resetStatFile() {
         setStat("CRT", 0) // 크리
         setStat("AVI", 0) // 회피
         setStat("RGW", 0) // 집중(활 공격력)
+        setStat("point", 0) //스텟 포인트
+        setStat("exp", 0) //custom exp
     }
 }
 

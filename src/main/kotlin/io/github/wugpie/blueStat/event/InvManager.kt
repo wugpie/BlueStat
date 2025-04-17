@@ -21,29 +21,61 @@ class InvManager : Listener {
         val rgw = player.getStat("RGW")
         if(event.view.title == "${player.name}의 스텟창"){
             event.isCancelled = true
+            val point = player.getStat("point")
             when(event.slot){
                 11 -> {
-                    player.setStat("ATK",  atk + 1)
+                    if(point > 0){
+                        player.setStat("ATK",  atk + 1)
+                        player.setStat("point", point - 1)
+                    } else {
+                        player.sendMessage("§f[§e알림§f] §e포인트§f가 §c부족§f합니다")
+                    }
+
                     StatCommand.setInventory(event.inventory, player)
                 }
                 13 -> {
-                    player.setStat("RGW",  rgw + 1)
+                    if(point > 0){
+                        player.setStat("RGW",  rgw + 1)
+                        player.setStat("point", point - 1)
+                    } else {
+                        player.sendMessage("§f[§e알림§f] §e포인트§f가 §c부족§f합니다")
+                    }
                     StatCommand.setInventory(event.inventory, player)
                 }
                 15 -> {
-                    player.setStat("DEF",  def + 1)
+                    if(point > 0){
+                        player.setStat("DEF",  def + 1)
+                        player.setStat("point", point - 1)
+                    } else {
+                        player.sendMessage("§f[§e알림§f] §e포인트§f가 §c부족§f합니다")
+                    }
                     StatCommand.setInventory(event.inventory, player)
                 }
                 29 -> {
-                    player.setStat("STB",  stb + 1)
+                    if(point > 0){
+                        player.setStat("STB",  stb + 1)
+                        player.setStat("point", point - 1)
+                    } else {
+                        player.sendMessage("§f[§e알림§f] §e포인트§f가 §c부족§f합니다")
+                    }
                     StatCommand.setInventory(event.inventory, player)
                 }
                 31 -> {
-                    player.setStat("CRT",  crt + 1)
+                    if(point > 0){
+                        player.setStat("CRT",  crt + 1)
+                        player.setStat("point", point - 1)
+                    } else {
+                     player.sendMessage("§f[§e알림§f] §e포인트§f가 §c부족§f합니다")
+                    }
                     StatCommand.setInventory(event.inventory, player)
                 }
                 33 -> {
-                    player.setStat("AVI",  avi + 1)
+                    if(point > 0){
+                        player.setStat("AVI",  avi + 1)
+                        player.setStat("point", point - 1)
+                    } else {
+                        player.sendMessage("§f[§e알림§f] §e포인트§f가 §c부족§f합니다")
+                    }
                     StatCommand.setInventory(event.inventory, player)
                 }
             }

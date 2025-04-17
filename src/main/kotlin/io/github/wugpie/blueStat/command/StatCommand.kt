@@ -21,7 +21,7 @@ object StatCommand {
                 .requires { it.sender is Player }
                 .executes{ context ->
                     val player = context.source.executor as Player
-                    val gui : Inventory = Bukkit.createInventory(null, 45 ,"${player.name}의 스텟창")
+                    val gui : Inventory = Bukkit.createInventory(null, 54 ,"${player.name}의 스텟창")
                     setInventory(gui,player)
                     player.openInventory(gui)
                     1
@@ -43,5 +43,6 @@ object StatCommand {
             ,"§4치명타§f에 §e관여§f하는 §f수치입니다.", "§f현재 수치: §e${player.getStat("CRT")}"))
         gui.setItem(33, getItem(Material.SHIELD, 1, "§a회피", true
             ,"§a회피§f에 §e관여§f하는 §f수치입니다.", "§f현재 수치: §e${player.getStat("AVI")}"))
+        gui.setItem(45, getItem(Material.BOOK, 1, "§f현재 §e스텟 §f포인트 : ${player.getStat("point")}", true, "§f현재 §e경험치 : ${player.getStat("exp")}"))
     }
 }

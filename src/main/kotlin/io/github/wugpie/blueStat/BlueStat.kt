@@ -1,7 +1,9 @@
 package io.github.wugpie.blueStat
 
 import io.github.wugpie.blueStat.command.StatCommand
+import io.github.wugpie.blueStat.event.DamageCaculator
 import io.github.wugpie.blueStat.event.InvManager
+import io.github.wugpie.blueStat.event.LevelManager
 import io.github.wugpie.blueStat.util.getStatFile
 import io.github.wugpie.blueStat.util.resetStatFile
 import io.papermc.paper.plugin.lifecycle.event.types.LifecycleEvents
@@ -20,6 +22,7 @@ class BlueStat : JavaPlugin(), Listener {
         server.consoleSender.sendMessage("${ChatColor.RED}ホシノ大好き!")
         server.pluginManager.registerEvents(DamageCaculator(), this)
         server.pluginManager.registerEvents(InvManager(), this)
+        server.pluginManager.registerEvents(LevelManager(), this)
         server.pluginManager.registerEvents(this, this)
 
         //초기 폴더 생성
@@ -41,6 +44,7 @@ class BlueStat : JavaPlugin(), Listener {
     //초기 파일 생성
     @EventHandler
     fun onFirstJoin(event : PlayerJoinEvent) {
+        if(event.player.level == 0) event.player.level = 1
         if(!event.player.getStatFile().exists()) event.player.resetStatFile()
     }
 
