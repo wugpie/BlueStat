@@ -23,7 +23,7 @@ class InvManager : Listener {
             event.isCancelled = true
             val point = player.getStat("point")
             when(event.slot){
-                11 -> {
+                20 -> {
                     if(point > 0){
                         player.setStat("ATK",  atk + 1)
                         player.setStat("point", point - 1)
@@ -33,7 +33,7 @@ class InvManager : Listener {
 
                     StatCommand.setInventory(event.inventory, player)
                 }
-                13 -> {
+                22 -> {
                     if(point > 0){
                         player.setStat("RGW",  rgw + 1)
                         player.setStat("point", point - 1)
@@ -42,7 +42,7 @@ class InvManager : Listener {
                     }
                     StatCommand.setInventory(event.inventory, player)
                 }
-                15 -> {
+                24 -> {
                     if(point > 0){
                         player.setStat("DEF",  def + 1)
                         player.setStat("point", point - 1)
@@ -51,7 +51,7 @@ class InvManager : Listener {
                     }
                     StatCommand.setInventory(event.inventory, player)
                 }
-                29 -> {
+                38 -> {
                     if(point > 0){
                         player.setStat("STB",  stb + 1)
                         player.setStat("point", point - 1)
@@ -60,7 +60,7 @@ class InvManager : Listener {
                     }
                     StatCommand.setInventory(event.inventory, player)
                 }
-                31 -> {
+                40 -> {
                     if(point > 0){
                         player.setStat("CRT",  crt + 1)
                         player.setStat("point", point - 1)
@@ -69,7 +69,7 @@ class InvManager : Listener {
                     }
                     StatCommand.setInventory(event.inventory, player)
                 }
-                33 -> {
+                42 -> {
                     if(point > 0){
                         player.setStat("AVI",  avi + 1)
                         player.setStat("point", point - 1)
