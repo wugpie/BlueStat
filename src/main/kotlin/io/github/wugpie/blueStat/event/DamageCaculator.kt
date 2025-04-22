@@ -15,9 +15,6 @@ class DamageCaculator : Listener {
         if(event.damager is Player){
             val p = event.damager as Player
             val atk = p.getStat("ATK")
-            p.sendMessage(atk.toString())
-            event.damage *= (1 + ( atk / 100 ) )
-            p.sendMessage(event.damage.toString())
         }
 
     }

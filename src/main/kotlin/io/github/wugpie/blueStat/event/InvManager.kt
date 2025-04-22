@@ -24,58 +24,87 @@ class InvManager : Listener {
             val point = player.getStat("point")
             when(event.slot){
                 20 -> {
-                    if(point > 0){
-                        player.setStat("ATK",  atk + 1)
-                        player.setStat("point", point - 1)
+                    if(atk < 450){
+                        if(point > 0){
+                            player.setStat("ATK",  atk + 1)
+                            player.setStat("point", point - 1)
+                        } else {
+                            player.sendMessage("§f[§e알림§f] §e포인트§f가 §c부족§f합니다")
+                        }
                     } else {
-                        player.sendMessage("§f[§e알림§f] §e포인트§f가 §c부족§f합니다")
+                        player.sendMessage("§f[§e알림§f] §e스탯§f이 §4최대§f입니다")
                     }
+
 
                     StatCommand.setInventory(event.inventory, player)
                 }
                 22 -> {
-                    if(point > 0){
-                        player.setStat("RGW",  rgw + 1)
-                        player.setStat("point", point - 1)
+                    if(rgw < 450){
+                        if(point > 0){
+                            player.setStat("RGW",  rgw + 1)
+                            player.setStat("point", point - 1)
+                        } else {
+                            player.sendMessage("§f[§e알림§f] §e포인트§f가 §c부족§f합니다")
+                        }
                     } else {
-                        player.sendMessage("§f[§e알림§f] §e포인트§f가 §c부족§f합니다")
+                        player.sendMessage("§f[§e알림§f] §e스탯§f이 §4최대§f입니다")
                     }
                     StatCommand.setInventory(event.inventory, player)
                 }
                 24 -> {
-                    if(point > 0){
-                        player.setStat("DEF",  def + 1)
-                        player.setStat("point", point - 1)
+                    if(def < 450){
+                        if(point > 0){
+                            player.setStat("DEF",  def + 1)
+                            player.setStat("point", point - 1)
+                        } else {
+                            player.sendMessage("§f[§e알림§f] §e포인트§f가 §c부족§f합니다")
+                        }
                     } else {
-                        player.sendMessage("§f[§e알림§f] §e포인트§f가 §c부족§f합니다")
+                        player.sendMessage("§f[§e알림§f] §e스탯§f이 §4최대§f입니다")
                     }
+
                     StatCommand.setInventory(event.inventory, player)
                 }
                 38 -> {
-                    if(point > 0){
-                        player.setStat("STB",  stb + 1)
-                        player.setStat("point", point - 1)
+                    if(stb < 450){
+                        if(point > 0){
+                            player.setStat("STB",  stb + 1)
+                            player.setStat("point", point - 1)
+                        } else {
+                            player.sendMessage("§f[§e알림§f] §e포인트§f가 §c부족§f합니다")
+                        }
                     } else {
-                        player.sendMessage("§f[§e알림§f] §e포인트§f가 §c부족§f합니다")
+                        player.sendMessage("§f[§e알림§f] §e스탯§f이 §4최대§f입니다")
                     }
+
                     StatCommand.setInventory(event.inventory, player)
                 }
                 40 -> {
-                    if(point > 0){
-                        player.setStat("CRT",  crt + 1)
-                        player.setStat("point", point - 1)
+                    if(crt < 450){
+                        if(point > 0){
+                            player.setStat("CRT",  crt + 1)
+                            player.setStat("point", point - 1)
+                        } else {
+                            player.sendMessage("§f[§e알림§f] §e포인트§f가 §c부족§f합니다")
+                        }
                     } else {
-                     player.sendMessage("§f[§e알림§f] §e포인트§f가 §c부족§f합니다")
+                        player.sendMessage("§f[§e알림§f] §e스탯§f이 §4최대§f입니다")
                     }
+
                     StatCommand.setInventory(event.inventory, player)
                 }
                 42 -> {
-                    if(point > 0){
-                        player.setStat("AVI",  avi + 1)
-                        player.setStat("point", point - 1)
+                    if(avi < 450){
+                        if(point > 0){
+                            player.setStat("AVI",  avi + 1)
+                            player.setStat("point", point - 1)
+                        } else {
+                            player.sendMessage("§f[§e알림§f] §e포인트§f가 §c부족§f합니다")
+                        }
                     } else {
-                        player.sendMessage("§f[§e알림§f] §e포인트§f가 §c부족§f합니다")
+                        player.sendMessage("§f[§e알림§f] §e스탯§f이 §4최대§f입니다")
                     }
+
                     StatCommand.setInventory(event.inventory, player)
                 }
             }
