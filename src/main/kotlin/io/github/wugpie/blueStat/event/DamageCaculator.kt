@@ -11,7 +11,7 @@ class DamageCaculator : Listener {
     @EventHandler
     fun onDamage(event : EntityDamageByEntityEvent){
 
-        //테스트 용
+        //나중에 추가
         if(event.damager is Player){
             val p = event.damager as Player
             val atk = p.getStat("ATK")
