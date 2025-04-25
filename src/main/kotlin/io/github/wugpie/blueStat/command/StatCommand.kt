@@ -16,6 +16,17 @@ import kotlin.math.atan
 
 object StatCommand {
 
+    fun build() : LiteralArgumentBuilder<CommandSourceStack>{
+        return LiteralArgumentBuilder.literal<CommandSourceStack>("stat")
+            .requires { it.sender is Player }
+            .executes{ context ->
+                val player = context.source.executor as Player
+                val gui : Inventory = Bukkit.createInventory(null, 54 ,"${player.name}의 스텟창")
+                setInventory(gui,player)
+                player.openInventory(gui)
+                1
+            }
+    }
     fun register(dispatcher: CommandDispatcher<CommandSourceStack>) {
         dispatcher.register(
             LiteralArgumentBuilder.literal<CommandSourceStack>("stat")

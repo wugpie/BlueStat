@@ -1,6 +1,7 @@
 package io.github.wugpie.blueStat
 
 import io.github.wugpie.blueStat.command.StatCommand
+import io.github.wugpie.blueStat.command.StatSetCommand
 import io.github.wugpie.blueStat.event.DamageCaculator
 import io.github.wugpie.blueStat.event.InvManager
 import io.github.wugpie.blueStat.event.LevelManager
@@ -32,8 +33,12 @@ class BlueStat : JavaPlugin(), Listener {
         //brigadier 명령어 등록
         val manager = this.lifecycleManager
         manager.registerEventHandler(LifecycleEvents.COMMANDS) { event ->
+            val dispatcher = event.registrar().dispatcher
             if (event.registrar().dispatcher != null) {
-                StatCommand.register(event.registrar().dispatcher)
+                //StatCommand.register(dispatcher)
+                dispatcher.register(StatCommand.build())
+                dispatcher.register(StatSetCommand.build())
+                //StatSetCommand.register(dispatcher)
                 logger.info("Brigadier command registered successfully.")
             } else {
                 logger.severe("Failed to register Brigadier command.")
