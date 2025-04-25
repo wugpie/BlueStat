@@ -1,17 +1,13 @@
 package io.github.wugpie.blueStat.command
 
-import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.builder.LiteralArgumentBuilder
 import io.github.wugpie.blueStat.util.getItem
 import io.github.wugpie.blueStat.util.getStat
-import io.github.wugpie.blueStat.util.getStatFile
 import io.papermc.paper.command.brigadier.CommandSourceStack
 import org.bukkit.Bukkit
-import org.bukkit.ChatColor
 import org.bukkit.Material
 import org.bukkit.entity.Player
 import org.bukkit.inventory.Inventory
-import org.bukkit.inventory.ItemStack
 import kotlin.math.atan
 
 object StatCommand {
@@ -26,20 +22,6 @@ object StatCommand {
                 player.openInventory(gui)
                 1
             }
-    }
-    fun register(dispatcher: CommandDispatcher<CommandSourceStack>) {
-        dispatcher.register(
-            LiteralArgumentBuilder.literal<CommandSourceStack>("stat")
-                .requires { it.sender is Player }
-                .executes{ context ->
-                    val player = context.source.executor as Player
-                    val gui : Inventory = Bukkit.createInventory(null, 54 ,"${player.name}의 스텟창")
-                    setInventory(gui,player)
-                    player.openInventory(gui)
-                    1
-                }
-        )
-
     }
 
     fun setInventory(gui : Inventory, player : Player){

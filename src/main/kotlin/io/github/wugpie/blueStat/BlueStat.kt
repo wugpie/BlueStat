@@ -35,10 +35,8 @@ class BlueStat : JavaPlugin(), Listener {
         manager.registerEventHandler(LifecycleEvents.COMMANDS) { event ->
             val dispatcher = event.registrar().dispatcher
             if (event.registrar().dispatcher != null) {
-                //StatCommand.register(dispatcher)
                 dispatcher.register(StatCommand.build())
                 dispatcher.register(StatSetCommand.build())
-                //StatSetCommand.register(dispatcher)
                 logger.info("Brigadier command registered successfully.")
             } else {
                 logger.severe("Failed to register Brigadier command.")

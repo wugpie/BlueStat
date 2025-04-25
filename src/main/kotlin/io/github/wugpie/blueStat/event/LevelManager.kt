@@ -2,7 +2,6 @@ package io.github.wugpie.blueStat.event
 
 import io.github.wugpie.blueStat.util.getStat
 import io.github.wugpie.blueStat.util.setStat
-import net.md_5.bungee.api.chat.BaseComponent
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.entity.PlayerDeathEvent

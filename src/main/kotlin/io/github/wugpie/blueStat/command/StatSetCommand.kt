@@ -1,7 +1,5 @@
 package io.github.wugpie.blueStat.command
 
-import com.mojang.brigadier.CommandDispatcher
-import com.mojang.brigadier.ImmutableStringReader
 import com.mojang.brigadier.StringReader
 import com.mojang.brigadier.arguments.IntegerArgumentType
 import com.mojang.brigadier.arguments.StringArgumentType
@@ -46,27 +44,4 @@ object StatSetCommand {
                     )
             )
     }
-    /** fun register(dispatcher: CommandDispatcher<CommandSourceStack>) {
-        dispatcher.register(
-            LiteralArgumentBuilder.literal<CommandSourceStack>("setstat")
-                .then(
-                    argument("statName", StatArgumentType())
-                        .then(
-                            argument("statValue", IntegerArgumentType.integer(0, 450))
-                                .requires { it.sender is Player }
-                                .executes{ context ->
-                                    val player = context.source.executor as Player
-                                    val stat = context.getArgument("statValue", StatArgumentType::class.java)
-                                    val statName = stat.toString()
-                                    val statValue = IntegerArgumentType.getInteger(context, "statValue")
-                                    player.sendMessage(statName)
-                                    player.sendMessage(statValue.toString())
-                                    1
-                                }
-                        )
-                )
-        )
-
-    }**/
-
 }
