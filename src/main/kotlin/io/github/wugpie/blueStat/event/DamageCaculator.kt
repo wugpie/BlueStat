@@ -15,6 +15,15 @@ class DamageCaculator : Listener {
         if(event.damager is Player){
             val p = event.damager as Player
             val atk = p.getStat("ATK")
+            val stb = p.getStat("STB")
+            val crt = p.getStat("CRT")
+            val rgw = p.getStat("RGW")
+            if(event.entity is Player){
+                val avi = p.getStat("AVI")
+                val def = p.getStat("DEF")
+            } else {
+                //추가 예정
+            }
         }
 
     }
