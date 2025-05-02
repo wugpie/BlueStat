@@ -7,7 +7,7 @@ import java.io.File
 
 fun Player.getStatFile() : File {
     return File("plugins" + File.separator
-            + "bluestats" + File.separator
+            + "BlueStat" + File.separator
             + "${this.uniqueId}.yml")
 }
 

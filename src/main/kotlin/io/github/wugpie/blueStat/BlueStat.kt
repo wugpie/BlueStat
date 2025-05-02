@@ -27,9 +27,9 @@ class BlueStat : JavaPlugin(), Listener {
         server.pluginManager.registerEvents(this, this)
 
         //초기 폴더 생성
-        val folder = File(server.pluginsFolder, "bluestats")
+        val folder = File(server.pluginsFolder, "BlueStat")
         if(!folder.exists()) folder.mkdir()
-
+        saveResource("config.yml", false)
         //brigadier 명령어 등록
         val manager = this.lifecycleManager
         manager.registerEventHandler(LifecycleEvents.COMMANDS) { event ->
