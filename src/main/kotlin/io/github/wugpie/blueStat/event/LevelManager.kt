@@ -1,5 +1,6 @@
 package io.github.wugpie.blueStat.event
 
+import io.github.wugpie.blueStat.util.calExp
 import io.github.wugpie.blueStat.util.getStat
 import io.github.wugpie.blueStat.util.setStat
 import org.bukkit.event.EventHandler
@@ -21,12 +22,12 @@ class LevelManager : Listener {
         }
         else{
             if (e.oldLevel < e.newLevel) {
-                e.player.sendActionBar("§f[§e알림§f] §c레벨 업§f! (§b${e.oldLevel} §f-> §c${e.newLevel}§f)")
+                e.player.sendMessage("§f[§e알림§f] §c레벨 업§f! (§b${e.oldLevel} §f-> §c${e.newLevel}§f)")
                 val p = e.player.getStat("point")
                 e.player.setStat("point", p + (5 * (e.newLevel - e.oldLevel)))
             }
             if (e.oldLevel > e.newLevel) {
-                e.player.sendActionBar("§f[§e알림§f] §a레벨 다운§f! (§b${e.oldLevel} §f-> §c${e.newLevel}§f)")
+                e.player.sendMessage("§f[§e알림§f] §a레벨 다운§f! (§b${e.oldLevel} §f-> §c${e.newLevel}§f)")
             }
         }
 
@@ -35,33 +36,21 @@ class LevelManager : Listener {
 
     @EventHandler
     fun onExpChange(event : PlayerExpChangeEvent){
-        val require = File("plugins" + File.separator
-                + "BlueStat" + File.separator
-                + "config.yml")
-        val required = require.readLines().map { it.toInt() }
-
-
         val exp = event.amount
-        val lv = event.player.level
-        val progress = event.player.exp
         event.amount = 0
 
-        val getExp = (exp.toFloat() / required[lv - 1].toFloat())
-        val getLv = (progress + getExp).toInt()
-        if(progress + getExp >= 1){
-            event.player.level += getLv
-        }
-        event.player.exp = (progress + getExp)  - getLv
-        if(lv >= 90){
+        if((event.player.getStat("exp") + exp) < 294784){
+            event.player.sendActionBar("§f[§e알림§f] §f${exp} §eXP")
+            val xp = calExp(event.player.getStat("exp") + exp)
+            event.player.level = xp.first
+            event.player.exp = xp.second
+            event.player.setStat("exp", event.player.getStat("exp") + exp)
+        } else {
             event.player.level = 90
             event.player.exp = 0.0f
             event.player.setStat("exp", 294784)
             event.player.sendActionBar("§f[§e알림§f] §eLV §cMax")
-        }else{
-            event.player.setStat("exp", event.player.getStat("exp") + exp)
         }
-
-
     }
 
     @EventHandler
