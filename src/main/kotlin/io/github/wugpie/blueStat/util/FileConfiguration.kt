@@ -2,7 +2,9 @@ package io.github.wugpie.blueStat.util
 
 import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.entity.Player
+import org.bukkit.plugin.java.JavaPlugin
 import java.io.File
+import java.io.FileNotFoundException
 
 
 fun Player.getStatFile() : File {
@@ -34,3 +36,12 @@ fun Player.resetStatFile() {
     }
 }
 
+fun copyResource(plugin: JavaPlugin, resourceName: String, outputFile: File) {
+    if (outputFile.exists()) return
+
+    plugin.getResource(resourceName)?.use { inputStream ->
+        outputFile.outputStream().use { outputStream ->
+            inputStream.copyTo(outputStream)
+        }
+    } ?: throw FileNotFoundException("Resource $resourceName not found in plugin JAR.") as Throwable
+}

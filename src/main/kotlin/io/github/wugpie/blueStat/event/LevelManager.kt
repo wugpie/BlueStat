@@ -11,21 +11,6 @@ import java.io.File
 
 class LevelManager : Listener {
 
-    /**val required =  arrayOf(8,10,15,21,28,36,45,55,66,
-        79,93,108,124,141,159,178,198,219,241,
-        265,288,312,337,363,390,418,447,508,581,
-        658,734,814,897,982,1069,1159,1251,1346,1443,
-        1543,1645,1750,1857,1966,2078,2192,2309,2428,
-        2550,2674,2800,2929,3060,3194,3330,3469,3610,3754,
-        3900,4048,4199,4352,4508,4666,4831,5007,5186,5369,
-        5556,5747,5942,6141,6344,6552,6768,6989,7216,7449,
-        7682,7915,8148,8381,8883,9460,10614,12922,17583,26770)**/
-
-    val require = File("plugins" + File.separator
-            + "BlueStat" + File.separator
-            + "config.yml").readLines()
-   val required = require.map { it.toInt() }
-
     @EventHandler
     fun onLevelChange(e : PlayerLevelChangeEvent){
         if(e.newLevel > 90){
@@ -50,6 +35,11 @@ class LevelManager : Listener {
 
     @EventHandler
     fun onExpChange(event : PlayerExpChangeEvent){
+        val require = File("plugins" + File.separator
+                + "BlueStat" + File.separator
+                + "config.yml")
+        val required = require.readLines().map { it.toInt() }
+
 
         val exp = event.amount
         val lv = event.player.level

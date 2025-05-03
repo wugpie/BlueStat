@@ -5,6 +5,7 @@ import io.github.wugpie.blueStat.command.StatSetCommand
 import io.github.wugpie.blueStat.event.DamageCaculator
 import io.github.wugpie.blueStat.event.InvManager
 import io.github.wugpie.blueStat.event.LevelManager
+import io.github.wugpie.blueStat.util.copyResource
 import io.github.wugpie.blueStat.util.getStatFile
 import io.github.wugpie.blueStat.util.resetStatFile
 import io.papermc.paper.plugin.lifecycle.event.types.LifecycleEvents
@@ -30,7 +31,11 @@ class BlueStat : JavaPlugin(), Listener {
         val folder = File(server.pluginsFolder, "BlueStat")
         if(!folder.exists()) folder.mkdir()
         //config 설정
-        saveResource("config.yml", false)
+        val config = File("plugins" + File.separator
+                + "BlueStat" + File.separator
+                + "config.yml")
+        copyResource(this, "config.yml", config)
+
         //brigadier 명령어 등록
         val manager = this.lifecycleManager
         manager.registerEventHandler(LifecycleEvents.COMMANDS) { event ->
