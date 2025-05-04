@@ -21,7 +21,10 @@ class BlueStat : JavaPlugin(), Listener {
 
 
     override fun onEnable() {
+
         server.consoleSender.sendMessage("${ChatColor.RED}ホシノ大好き!")
+
+        //이벤트 등록
         server.pluginManager.registerEvents(DamageCaculator(), this)
         server.pluginManager.registerEvents(InvManager(), this)
         server.pluginManager.registerEvents(LevelManager(), this)

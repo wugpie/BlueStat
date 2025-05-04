@@ -8,7 +8,6 @@ import org.bukkit.event.Listener
 import org.bukkit.event.entity.PlayerDeathEvent
 import org.bukkit.event.player.PlayerExpChangeEvent
 import org.bukkit.event.player.PlayerLevelChangeEvent
-import java.io.File
 
 class LevelManager : Listener {
 
@@ -30,12 +29,11 @@ class LevelManager : Listener {
                 e.player.sendMessage("§f[§e알림§f] §a레벨 다운§f! (§b${e.oldLevel} §f-> §c${e.newLevel}§f)")
             }
         }
-
-
     }
 
     @EventHandler
     fun onExpChange(event : PlayerExpChangeEvent){
+
         val exp = event.amount
         event.amount = 0
 
