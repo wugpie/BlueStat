@@ -1,17 +1,11 @@
 package io.github.wugpie.blueStat.event
 
 import io.github.wugpie.blueStat.util.getStat
-import org.bukkit.entity.Arrow
-import org.bukkit.entity.Egg
-import org.bukkit.entity.EnderPearl
-import org.bukkit.entity.Player
-import org.bukkit.entity.Projectile
-import org.bukkit.entity.Snowball
+import org.bukkit.entity.*
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.entity.EntityDamageByEntityEvent
 import org.bukkit.event.entity.EntityDamageEvent
-import org.bukkit.event.entity.ProjectileHitEvent
 import kotlin.math.atan
 
 class DamageCaculator : Listener {
@@ -19,8 +13,7 @@ class DamageCaculator : Listener {
     @EventHandler
     fun onDamageByEntity(event : EntityDamageByEntityEvent){
 
-        //나중에 추가!
-        if(event.damager is Player){
+        if(event.damager is Player) {
             val p = event.damager as Player
             val atk = p.getStat("ATK")
             val stb = p.getStat("STB")
@@ -32,7 +25,8 @@ class DamageCaculator : Listener {
                     atan((atk.toDouble()) / 122)) + 1)
 
             //크리 추가 예정
-            if(event.entity is Player){
+
+            if (event.entity is Player) {
                 val e = event.entity as Player
                 val avi = e.getStat("AVI")
                 val def = e.getStat("DEF")
@@ -44,17 +38,17 @@ class DamageCaculator : Listener {
                 //회피 추가 예정
 
             }
-            else if(event.entity is Snowball || event.entity is EnderPearl ||
-                event.entity is Egg || event.entity is Arrow) {
+        }
+        else if(event.damager is Snowball || event.damager is EnderPearl ||
+            event.damager is Egg || event.damager is Arrow) {
 
+            if((event.damager as Projectile).shooter is Player){
+                val p = (event.damager as Projectile).shooter as Player
+                val rgw = p.getStat("RGW")
 
-                if((event.entity as Projectile).shooter is Player){
-                    val p = (event.entity as Projectile).shooter as Player
-                    val rgw = p.getStat("RGW")
-                    //집중 계수 + 안정치 추가 예정
-                    event.damage *= (((Math.PI / 1.02576) *
-                            atan((rgw.toDouble()) / 122)) + 1)
-                }
+                //집중 계수 + 안정치 추가 예정
+                event.damage *= (((Math.PI / 1.02576) *
+                        atan((rgw.toDouble()) / 122)) + 1)
             }
         }
     }
@@ -62,5 +56,17 @@ class DamageCaculator : Listener {
     @EventHandler
     fun onDamage(e : EntityDamageEvent){
         //나중에 추가 예정
+        if(e.cause == EntityDamageEvent.DamageCause.BLOCK_EXPLOSION ||
+            e.cause == EntityDamageEvent.DamageCause.ENTITY_ATTACK ||
+            e.cause == EntityDamageEvent.DamageCause.ENTITY_EXPLOSION ||
+            e.cause == EntityDamageEvent.DamageCause.PROJECTILE) return
+        if(e.entity is Player){
+            val p = e.entity as Player
+            val def = p.getStat("DEF")
+
+            //방어력 계수
+            e.damage *= (((-1 * (Math.PI / 8.2065)) *
+                    atan((def.toDouble()) / 122)) + 1)
+        }
     }
 }
