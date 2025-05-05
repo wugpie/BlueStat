@@ -7,6 +7,7 @@ import org.bukkit.event.Listener
 import org.bukkit.event.entity.EntityDamageByEntityEvent
 import org.bukkit.event.entity.EntityDamageEvent
 import kotlin.math.atan
+import kotlin.random.Random
 
 class DamageCaculator : Listener {
 
@@ -25,6 +26,7 @@ class DamageCaculator : Listener {
                     atan((atk.toDouble()) / 122)) + 1)
 
             //크리 추가 예정
+            val rate = Random.nextDouble(0.0, 1.0)
 
             if (event.entity is Player) {
                 val e = event.entity as Player
