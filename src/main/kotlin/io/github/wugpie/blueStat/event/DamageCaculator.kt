@@ -27,6 +27,10 @@ class DamageCaculator : Listener {
 
             //크리 추가 예정
             val rate = Random.nextDouble(0.0, 1.0)
+            if(rate <= ((0.2 * Math.PI / 1.02576) * atan(crt.toDouble())/122)){
+                p.sendMessage("§cCritical")
+                event.damage *= 2
+            }
 
             if (event.entity is Player) {
                 val e = event.entity as Player
@@ -37,8 +41,12 @@ class DamageCaculator : Listener {
                 event.damage *= (((-1 * (Math.PI / 8.2065)) *
                         atan((def.toDouble()) / 122)) + 1)
 
-                //회피 추가 예정
-
+                //회피
+                val rate2 = Random.nextDouble(0.0, 1.0)
+                if(rate2 <= ((0.2 * Math.PI / 1.02576) * atan(avi.toDouble())/122)){
+                    e.sendMessage("§e회피")
+                    event.isCancelled = true
+                }
             }
         }
         else if(event.damager is Snowball || event.damager is EnderPearl ||
