@@ -25,7 +25,7 @@ class DamageCaculator : Listener {
             event.damage *= (((Math.PI / 1.02576) *
                     atan((atk.toDouble()) / 122)) + 1)
 
-            //크리 추가 예정
+            //크리 확률
             val rate = Random.nextDouble(0.0, 1.0)
             if(rate <= ((0.2 * Math.PI / 1.02576) * atan(crt.toDouble())/122)){
                 p.sendMessage("§cCritical")
@@ -41,7 +41,7 @@ class DamageCaculator : Listener {
                 event.damage *= (((-1 * (Math.PI / 8.2065)) *
                         atan((def.toDouble()) / 122)) + 1)
 
-                //회피
+                //회피 확률
                 val rate2 = Random.nextDouble(0.0, 1.0)
                 if(rate2 <= ((0.2 * Math.PI / 1.02576) * atan(avi.toDouble())/122)){
                     e.sendMessage("§e회피")
