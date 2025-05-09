@@ -21,7 +21,7 @@ class DamageCaculator : Listener {
             val crt = p.getStat("CRT")
 
 
-            //공격력 계수 + 안정치 추가 예정
+            //공격력 계수 + 안정치 계산 추가 예정
             event.damage *= (((Math.PI / 1.02576) *
                     atan((atk.toDouble()) / 122)) + 1)
 
@@ -56,7 +56,7 @@ class DamageCaculator : Listener {
                 val p = (event.damager as Projectile).shooter as Player
                 val rgw = p.getStat("RGW")
 
-                //집중 계수 + 안정치 추가 예정
+                //집중 계수 + 안정치 계산 추가 예정
                 event.damage *= (((Math.PI / 1.02576) *
                         atan((rgw.toDouble()) / 122)) + 1)
             }
@@ -65,7 +65,7 @@ class DamageCaculator : Listener {
 
     @EventHandler
     fun onDamage(e : EntityDamageEvent){
-        //나중에 추가 예정
+        //보완 예정
         if(e.cause == EntityDamageEvent.DamageCause.BLOCK_EXPLOSION ||
             e.cause == EntityDamageEvent.DamageCause.ENTITY_ATTACK ||
             e.cause == EntityDamageEvent.DamageCause.ENTITY_EXPLOSION ||
